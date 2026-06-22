@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯 · 赛事资讯</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f5f0;
+            font-family: 'Georgia', 'Times New Roman', '宋体', 'Songti SC', serif;
+            color: #2c2b28;
+            line-height: 1.75;
+            padding: 0 1.2rem;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 2rem auto 3rem;
+            background-color: #fefcf9;
+            padding: 2.5rem 2.2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                padding: 1.8rem 1.2rem;
+                margin: 1rem auto;
+            }
+            body {
+                padding: 0 0.6rem;
+            }
+        }
+
+        /* hero 横幅 */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 1.8rem 0;
+            border-bottom: 1px solid #e5ddd6;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: #1f3a3f;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #7a7067;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .hero .deco {
+            display: inline-block;
+            width: 56px;
+            height: 2px;
+            background: #b8aaa0;
+            margin: 1.2rem auto 0.6rem;
+        }
+
+        /* 文章主体 */
+        .intro-block {
+            margin-bottom: 2rem;
+        }
+
+        .intro-block p {
+            margin-bottom: 1.2rem;
+            text-indent: 2em;
+        }
+
+        .intro-block p:first-of-type {
+            margin-top: 0.4rem;
+        }
+
+        /* 引用 / 提示框 */
+        .highlight-box {
+            background-color: #f3ede8;
+            padding: 1.6rem 2rem;
+            border-left: 6px solid #7f6b5d;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0 2rem 0;
+            font-size: 0.98rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0.6rem;
+            text-indent: 0;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box .label {
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #4f3e33;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 特点迷你网格 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .feature-item {
+            flex: 1 1 160px;
+            background: #faf7f3;
+            padding: 1.2rem 1rem;
+            border-radius: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid #e9e1da;
+        }
+
+        .feature-item .num {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #7a6b5f;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #2b3e42;
+        }
+
+        .feature-item p {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: #55504a;
+            text-indent: 0;
+        }
+
+        /* FAQ 摘要风格 */
+        .faq-note {
+            margin: 2.2rem 0 1.6rem;
+            border-top: 1px dashed #d9cec4;
+            padding-top: 1.8rem;
+        }
+
+        .faq-note details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #ede7e0;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-note summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #3b4f4d;
+            padding: 0.2rem 0;
+            font-size: 0.96rem;
+        }
+
+        .faq-note details p {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            font-size: 0.92rem;
+            color: #4e4943;
+            text-indent: 0;
+        }
+
+        /* 尾页访问提示 */
+        .footer-hint {
+            margin-top: 2.8rem;
+            padding: 1.8rem 0 0.8rem;
+            border-top: 1px solid #e5ddd6;
+            text-align: center;
+        }
+
+        .footer-hint p {
+            font-size: 0.95rem;
+            color: #4f4842;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .footer-hint a {
+            color: #2f5b59;
+            text-decoration: none;
+            border-bottom: 1px solid #c1b6ab;
+            transition: border-bottom 0.2s;
+        }
+
+        .footer-hint a:hover {
+            border-bottom: 1px solid #3d6b68;
+        }
+
+        .inline-link {
+            color: #2f5b59;
+            text-decoration: none;
+            border-bottom: 1px solid #c1b6ab;
+            transition: border-bottom 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #3d6b68;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 -->
+    <div class="hero">
+        <h1>世界杯</h1>
+        <div class="sub">赛事资讯 · 动态聚焦</div>
+        <div class="deco"></div>
+    </div>
+
+    <!-- 三段自然介绍，从用户识别用途切入 -->
+    <div class="intro-block">
+        <p>打开浏览器，在地址栏里输入一串字符，你想找到的是什么？对于关心足球赛事的人来说，一个直接呈现资讯、赛历与背景的页面，比铺天盖地的广告更值得停留。正是出于这样的想法，<a href="https://m--worldcup26.com" class="inline-link">世界杯</a>这个站点试图用简洁的方式，为你梳理与世界杯相关的线索——不堆砌，不喧哗，只把值得看的东西放在那里。</p>
+
+        <p>很多人对世界杯的记忆，始于一场凌晨的比赛、一张皱巴巴的球星贴纸，或是某个夏天里全校都在讨论的比分。四年一次的节奏，让这项赛事变成了一种刻度。m--worldcup26.com 没有试图复制那种狂热，它更像一本安静的专题笔记：把赛程、历史片段、主办城市的风貌，以及那些藏在比赛背后的数据，一页页摊开。如果你只是想快速确认某届比赛的冠军是谁，或者下一届在哪里踢，这里的结构能让你少翻几层菜单。</p>
+
+        <p>网站的背景并不复杂——它围绕“世界杯”这个核心词展开，但又不局限于简单的结果罗列。你会在页面里遇到一些略带叙述感的段落，比如某座球场的建筑风格，或某次决赛的天气如何影响了战术。这些内容不是为了掉书袋，而是希望让浏览变成一件有温度的事。毕竟，足球从来不只是比分板上的数字。</p>
+    </div>
+
+    <!-- 引用块 / 提示框 -->
+    <div class="highlight-box">
+        <div class="label">▎一点提醒</div>
+        <p>如果你正在寻找一份不浮夸的世界杯信息合集，或者说，你想绕过那些弹窗和自动播放的视频，安安静静地读几段关于世界杯的文字——那么你很可能来对了地方。网站没有内嵌社交媒体的时间线，也没有催促你订阅的弹窗。它只是把内容整理好，等你翻看。</p>
+        <p>当然，所有信息都以公开资料为基础，力求准确；但赛事日程、场馆安排等细节仍可能发生变动，建议同时关注官方渠道。</p>
+    </div>
+
+    <!-- 特点/场景 三块小卡片（不用相同章节名） -->
+    <div class="feature-grid">
+        <div class="feature-item">
+            <span class="num">01</span>
+            <h3>赛历与备忘</h3>
+            <p>从预选赛到决赛周，关键日期一目了然。适合想提前规划观赛日程的人。</p>
+        </div>
+        <div class="feature-item">
+            <span class="num">02</span>
+            <h3>历届档案</h3>
+            <p>冠军、最佳射手、经典比赛——不只有数据，还有一两句背景叙述。</p>
+        </div>
+        <div class="feature-item">
+            <span class="num">03</span>
+            <h3>主办国速写</h3>
+            <p>球场、城市、文化碎片。不是旅游指南，但能帮你更快进入语境。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要风格（两三个问答） -->
+    <div class="faq-note">
+        <details>
+            <summary>这个网站和其他世界杯网站有什么不同？</summary>
+            <p>它更像一份编辑过的文档，而不是门户。没有滚动不停的广告，没有自动播放的视频，也没有需要注册才能看的独家内容。你看到的就是一段段文字和干净的结构。</p>
+        </details>
+        <details>
+            <summary>信息更新频率如何？</summary>
+            <p>随着赛事推进，相关内容会陆续补充。但因为人力有限，无法做到每一条新闻实时同步，更适合作为背景阅读和参考。</p>
+        </details>
+        <details>
+            <summary>我可以用手机浏览吗？</summary>
+            <p>页面针对不同屏幕做了基础适配，无论是桌面端还是手机，阅读体验都尽量保持清爽。毕竟很多人就是在通勤路上打开一个链接的。</p>
+        </details>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-hint">
+        <p>如果你对世界杯的历史、赛程或那些冷门故事还有好奇，不妨直接去 <a href="https://m--worldcup26.com">世界杯</a> 页面里逛一逛。没有多余的步骤，就是一段安静的阅读旅程。</p>
+        <p style="margin-top: 1.2rem; font-size: 0.85rem; color: #9c9188;">m--worldcup26.com · 专题笔记</p>
+    </div>
+
+</div>
+</body>
+</html>
