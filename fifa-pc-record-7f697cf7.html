@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>世界杯 · 信息卡片式介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f2f7fa;
+            color: #1d2a35;
+            line-height: 1.6;
+            padding: 1.25rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ------ hero (主视觉) ------ */
+        .hero {
+            background: linear-gradient(145deg, #d9edea, #b8d9d4);
+            padding: 2.8rem 2.2rem;
+            border-radius: 2.5rem 1rem 2.5rem 1rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px rgba(33, 94, 84, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(72, 180, 156, 0.20) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0d3b35;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #1d5f55;
+            max-width: 620px;
+            position: relative;
+            font-weight: 400;
+        }
+
+        /* ------ 网格卡片区 ------ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.6rem;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 30, 20, 0.04);
+            transition: all 0.2s ease;
+            border: 1px solid #e2f0ec;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(30, 110, 95, 0.08);
+            border-color: #a5d0c7;
+            transform: translateY(-3px);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            color: #1a7b6b;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f443d;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.96rem;
+            color: #2c4b45;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .card .meta {
+            font-size: 0.85rem;
+            color: #43756b;
+            border-top: 1px solid #d5e9e3;
+            padding-top: 0.75rem;
+            margin-top: auto;
+        }
+
+        /* 自然链接段落 (长内容) */
+        .narrative {
+            background: #ffffffde;
+            backdrop-filter: blur(2px);
+            padding: 2rem 2rem 2.2rem;
+            border-radius: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 40, 30, 0.02);
+            border: 1px solid #cfdfda;
+        }
+
+        .narrative p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .narrative p:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-embed {
+            color: #0c6b58;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .link-embed:hover {
+            border-bottom-color: #0f8f76;
+        }
+
+        /* FAQ摘要 */
+        .faq-mini {
+            background: #f0f7f5;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem 2rem;
+            margin: 2.5rem 0 2rem;
+            border-left: 6px solid #389686;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #13554a;
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #0d423b;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item p {
+            margin: 0 0 0.3rem 0;
+            color: #2e554d;
+            font-size: 0.95rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 适合人群微卡片 */
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.8rem;
+            margin: 1.2rem 0 0.4rem;
+        }
+
+        .audience-tags span {
+            background: #d3e8e2;
+            color: #11463c;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 450;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            color: #3c6b61;
+            font-size: 0.9rem;
+            border-top: 1px solid #c6dbd5;
+            padding-top: 2rem;
+        }
+
+        .footer-note a {
+            color: #0c6b58;
+            text-decoration: none;
+            border-bottom: 1px dotted #7fada0;
+        }
+
+        .footer-note a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .narrative {
+                padding: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 主视觉 -->
+    <div class="hero">
+        <h1>世界杯·信息边角</h1>
+        <div class="sub">日常查询、对照与延伸阅读 —— 从一届赛事延伸到更多理解。</div>
+    </div>
+
+    <!-- 信息卡片网格 -->
+    <div class="card-grid">
+
+        <!-- 卡片 1 用途 -->
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <h3>快速对照</h3>
+            <p>比分、小组形势、历史记录，随时翻阅。不需费力搜索，一个页面整合基本数据与背景。</p>
+            <div class="meta">常用于赛程核对 · 数据浏览</div>
+        </div>
+
+        <!-- 卡片 2 人群 -->
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h3>适合哪些人</h3>
+            <p>偶尔看球的观众、想了解过去冠军的新手、查找特定年份细节的资料读者，都能找到入口。</p>
+            <div class="audience-tags">
+                <span>轻球迷</span>
+                <span>资料查阅</span>
+                <span>回顾向</span>
+            </div>
+        </div>
+
+        <!-- 卡片 3 延伸阅读 -->
+        <div class="card">
+            <div class="card-icon">🔗</div>
+            <h3>自然链接</h3>
+            <p>页面中穿插指向主要信息的连接，不突兀。例如你可以从句子中直接跳转到关于 <a href="https://fifa-pc-worldcup.com" class="link-embed">世界杯</a> 的更多摘要与统计。</p>
+            <div class="meta">链接嵌于叙述 · 不单独强调</div>
+        </div>
+
+        <!-- 卡片 4 叙事视角 -->
+        <div class="card">
+            <div class="card-icon">📖</div>
+            <h3>叙述感</h3>
+            <p>不是机械罗列，而是一种安静的讲述：哪一年、哪支球队、哪些纪录。保持克制，不渲染情绪。</p>
+            <div class="meta">适合慢慢翻看</div>
+        </div>
+
+        <!-- 卡片 5 查询场景 -->
+        <div class="card">
+            <div class="card-icon">🔍</div>
+            <h3>日常查询</h3>
+            <p>朋友聊起某届决赛、忽然想确认最佳射手、或是想看看东道主战绩——这些场景恰好合适。</p>
+            <div class="meta">轻量 · 不打扰</div>
+        </div>
+
+        <!-- 卡片 6 移动端友好 -->
+        <div class="card">
+            <div class="card-icon">📱</div>
+            <h3>手机上也舒服</h3>
+            <p>卡片式排版随宽度调整，文字大小适中，不需要放大或横滑。蓝绿色点缀柔和，不刺眼。</p>
+            <div class="meta">阅读体验优先</div>
+        </div>
+    </div>
+
+    <!-- 自然链接段落：从日常叙述引出链接 -->
+    <div class="narrative">
+        <p>说起世界杯，大家往往先想到决赛、金球奖、或者那些冷门的逆转。其实大多数时候，我们只是想在某个晚上查一下上一届的小组赛结果，或者确认某位球员的参赛届数。这种「轻量查阅」的需求，恰好需要一个安静、没有干扰的信息落脚点。</p>
+        <p>也许你刚看完一篇回顾文章，想顺手对比几届冠军的胜率；又或者只是想知道某一支球队过去五届的表现。在这些日常的、零散的查询背后，有一个页面把相关内容整理在一起——<a href="https://fifa-pc-worldcup.com" class="link-embed">世界杯</a>的索引页恰好提供了这种结构：年份、主办国、比赛阶段、纪录，以相对克制的卡片形式呈现，不夸大，也不催促。</p>
+        <p>页面本身没有复杂的交互，适合慢慢滚动或定点查看。每个卡片都像一张小纸条，单独拿出来就是一条可读的信息。下面还附了一些简短摘要，供你快速了解框架。</p>
+    </div>
+
+    <!-- FAQ 摘要（信息性，非诱导） -->
+    <div class="faq-mini">
+        <h2>常见疑问 · 摘要</h2>
+        <div class="faq-item">
+            <strong>这个页面包含哪些内容？</strong>
+            <p>主要是历届世界杯的基本数据、冠军列表、部分纪录和对照信息，以及延伸阅读的索引。所有内容以信息卡片和自然段落组织。</p>
+        </div>
+        <div class="faq-item">
+            <strong>信息更新频率？</strong>
+            <p>在主要赛事结束后会做对应补充，保持与公开数据一致。日常不频繁变动。适合作为参考，不保证实时。</p>
+        </div>
+        <div class="faq-item">
+            <strong>移动设备阅读体验如何？</strong>
+            <p>卡片自适应宽度，文字可读性好。蓝绿色辅助减少视觉疲劳。无需横向滑动或双指缩放。</p>
+        </div>
+        <div class="faq-item">
+            <strong>链接导到哪里？</strong>
+            <p>文章中嵌入的链接指向 <a href="https://fifa-pc-worldcup.com" class="link-embed">世界杯</a> 主页面，属于网站内容索引，没有商业推广或诱导。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群再补充一个小区块 -->
+    <div style="background: white; border-radius: 2rem; padding: 1.6rem 2rem; border: 1px solid #daece6;">
+        <p style="color: #1b5b4f; font-weight: 450; margin-bottom: 0.8rem;">🧩 可能对你有用，如果你属于：</p>
+        <div class="audience-tags" style="margin-top: 0;">
+            <span>足球知识爱好者</span>
+            <span>赛事期间查资料</span>
+            <span>学生写作业参考</span>
+            <span>偶尔回顾老比赛</span>
+            <span>喜欢干净的信息页面</span>
+        </div>
+    </div>
+
+    <!-- footer 自然提及 (不再重复链接) -->
+    <div class="footer-note">
+        <p>一个安静的信息卡片页面 · 内容源自公开资料 · 保持克制与清晰</p>
+        <p style="margin-top: 0.3rem; font-size: 0.8rem; opacity: 0.7;">页面方向：信息卡片式 · 蓝绿点缀 · 移动友好</p>
+    </div>
+
+</div>
+</body>
+</html>
