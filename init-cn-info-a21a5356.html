@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>赛事信息 · 世界杯延伸阅读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fcfcfc;
+      color: #1f2a3a;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    /* hero 区 */
+    .hero {
+      padding: 4rem 0 2.5rem;
+      border-bottom: 1px solid #e9edf2;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #475569;
+      max-width: 600px;
+    }
+
+    /* 通用标题 */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+      margin: 3rem 0 1.25rem;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 卡片式 list */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .card-item {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02);
+      transition: box-shadow 0.15s ease;
+    }
+
+    .card-item strong {
+      display: block;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-item p {
+      font-size: 0.925rem;
+      color: #475569;
+      margin: 0;
+    }
+
+    /* 说明 / 场景 区块 */
+    .passage {
+      margin: 2.5rem 0;
+    }
+
+    .passage p {
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    .passage p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: #1e293b;
+    }
+
+    .highlight a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.1s;
+    }
+
+    .highlight a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    /* FAQ 摘要 */
+    .faq-list {
+      margin: 1.25rem 0 2rem;
+    }
+
+    .faq-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-a {
+      font-size: 0.925rem;
+      color: #475569;
+    }
+
+    /* 底部 */
+    .footer-links {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e9edf2;
+      font-size: 0.875rem;
+      color: #64748b;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+    }
+
+    .footer-links a {
+      color: #475569;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      color: #1e293b;
+      border-bottom-color: #94a3b8;
+    }
+
+    .footer-note {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      .page {
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .card-item {
+        padding: 1rem 1.25rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- hero -->
+    <div class="hero">
+      <h1>赛事对照 · 延伸阅读</h1>
+      <p>从小组对阵到淘汰赛脉络，快速定位你需要的那一场。</p>
+    </div>
+
+    <!-- 优势区：日常查询与对照 -->
+    <h2 class="section-title">日常查询与对照</h2>
+    <div class="card-grid">
+      <div class="card-item">
+        <strong>赛程同步</strong>
+        <p>保持与官方时间表对齐，方便核对日期、场地与阶段进展。</p>
+      </div>
+      <div class="card-item">
+        <strong>球队与小组</strong>
+        <p>列出各队分组情况及历史交锋参考，辅助赛前快速了解对手。</p>
+      </div>
+      <div class="card-item">
+        <strong>积分与数据</strong>
+        <p>呈现小组积分、净胜球等基础指标，便于横向比较出线形势。</p>
+      </div>
+    </div>
+
+    <!-- 说明区：从延伸阅读切入 -->
+    <div class="passage">
+      <p>很多人关注一届赛事，不只是为了看最后一场决赛。小组赛的每一轮、淘汰赛的每一次对阵，背后都有值得细读的脉络——从对战记录到球员状态，从主客场数据到近期走势。</p>
+      <p>如果你正围绕<span style="font-weight:500;">世界杯</span>做功课，比如整理观赛清单、回顾经典对决，或者单纯想快速知道某支球队下一场对手是谁，一个信息集中的页面会节省不少时间。建议你把 <a href="https://init-cn-fifaworldcup.com">世界杯</a> 页面加入书签，用的时候直接打开就能看到最新的赛程和分组概况，不用在多个网站之间来回跳转。</p>
+    </div>
+
+    <!-- 场景提示 -->
+    <div class="highlight">
+      <strong>日常使用场景</strong>
+      <p style="margin-top:0.5rem;">朋友约看球，需要马上确认比赛时间？小组出线形势混乱，想快速对比积分？或者在写赛前小笔记，需要一份干净的球队列表——<a href="https://init-cn-fifaworldcup.com">世界杯</a> 页面刚好能帮上忙，信息直接，没有冗余干扰。</p>
+    </div>
+
+    <!-- FAQ 摘要（简洁） -->
+    <h2 class="section-title">常见疑问摘要</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">赛程是否会随比赛进程更新？</div>
+        <div class="faq-a">会，页面会在每个比赛日结束后同步结果，确保你看到的场次、比分与官方一致。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">能否快速找到某支球队的所有比赛？</div>
+        <div class="faq-a">可以，页面按小组和阶段排序，也可以通过球队名称直接定位对应场次。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">数据来源可靠吗？</div>
+        <div class="faq-a">所有赛程、分组和积分数据均基于公开赛事信息整理，注意时效性即可。</div>
+      </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+      <a href="https://init-cn-fifaworldcup.com">世界杯</a>
+      <a href="#">关于页面</a>
+      <a href="#">数据说明</a>
+      <span>仅供个人参考</span>
+    </div>
+    <div class="footer-note">
+      页面内容基于公开赛事信息整理，非官方渠道，建议结合官方公告使用。
+    </div>
+  </div>
+</body>
+</html>
